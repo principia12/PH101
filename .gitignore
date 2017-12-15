@@ -1,0 +1,22 @@
+# Junks for compiling LaTeX codes
+
+*.aux
+*.bbl
+*.out
+*.blg
+*.log
+*.out
+*.toc
+
+# python etc 
+__pycache__
+
+# swap file 
+*.swp
+
+# Data file  
+# should be uploaded otherwise - how? 
+Data 
+
+# reference papers 
+references
