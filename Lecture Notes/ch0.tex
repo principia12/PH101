@@ -1,19 +1,42 @@
-\section{Short Recap on Mathematicla Tools}
+\section{Short Recap on Mathematical Tools}
 
 \subsection{Calculus}
 
-\subsubsection{Coordinates} 
+\subsubsection{Coordinates}
+\label{chap:coordinates}
 
 
-\paragraph{Cartesian Coordinate}
-\paragraph{Polar Coordinate}
-\paragraph{Cylindrical Coordinate}
-\paragraph{Spherical Coordinate }
+\paragraph{Various Coordinates} 
+좌표계란 공간 내의 임의의 한 점을 어떤 수, 또는 어떤 수들의 순서쌍으로 나타내는 함수이다. 예를 들어서, gps에서 사용하는 위도/경도 등은 지표면상의 위치를 나타내는 하나의 좌표계이다. 본 수업에서 다룰 좌표계에는 크게 4가지의 좌표계가 있다. 
+
+\begin{itemize}
+\item{직교좌표계(Cartesian Coordinate)} $(x,y,z)$
+\item{극좌표계(Polar Coordinate)} $(r, \theta)$ 점대칭인 2차원 상황에서 많이 이용된다. 
+\item{원통 좌표계(Cylindrical Coordinate)} $(r,\theta,z)$원기둥 표면 위의 한 점을 나타내기에 적합하며, 축대칭이면서 동시에 극좌표계를 사용하는 것이 적합할 때 이용된다. 
+\item{구면좌표계(Spherical Coordinate)} $(\rho,\theta,\phi)$구면상의 한 점을 나타내기에 적합하다. 보통 점대칭인 상황을 기술할 때 사용하기 용이하다. 물리학에서의 많은 상황은 이러한 점대칭 상황을 가정한다. \footnote{https://youtu.be/StHMKdvuHN0}
+\end{itemize}
+
+\paragraph{Transformation between Coordinate Systems} 
+
+\begin{itemize}
+\item Cartesian to Polar Coordinate 
+\begin{equation}
+        r =  \sqrt{x^2+y^2} 
+\end{equation}
+\begin{equation}
+        \theta = tan^{-1} y/x
+\end{equation}
+\item Cartesian to Cylindrical Coordinate
+\item Cartesian to Spherical Coordinate
+\end{itemize}
+
 
 
 \subsubsection{Vector} 
 
-\paragraph{Definition}
+\paragraph{Definition} 벡터의 정의는 쓰고자 하는 범위에 따라서 여러가지로 달라지나, 여기서는 가장 naive한 정의인 크기와 방향을 가지는 객체라고 정의\footnote{벡터의 정의는 다양하며, 여기서 말하는 크기와 방향이라는 개념 또한 수학적으로 애매하지만 일단은 넘어가고 차후에 더 수학적으로 엄밀한 정의를 할 수 있을 것이다.} 하자. 이와 대응되는 개념의 스칼라는 크기만 가진 개념으로 정의하자. 
+
+예를 들어서 온도나 길이 등은 크기만 가지는 개념으로, 스칼라양으로 볼 수 있다. 이와는 다르게, 힘 같은 것은 크기와 방향을 동시에 가지므로 벡터로 생각할 수 있다. 
 
 \paragraph{Operations} 
 
@@ -21,20 +44,75 @@
 \item Addition, Subtraction 
 \item Scalar Multiplication 
 \item Inner Product
-\item Outer Product
+\item Outer Product (3차원에서만 적용가능)
 \end{itemize}
 
 
 \subsubsection{Multivariable Functions} 
 
-\paragraph{Partial Derivatives} 
+\paragraph{Recap on Definition of Function}  함수는 다음과 같은 3-tuple로 정의된다. 
+\begin{definition} 
+함수 f는 (X, Y, f)로 정의되며, 
+\begin{itemize} 
+\item X (range:set) 정의역이라고도 하며, 함수가 받는 입력의 집합이다. 
+\item Y (range:set) 공역이라고 하며, 함수가 반환하는 출력의 집합이다. 
+\item $f \subset X \times Y$ (range:set) 두 함수의 대응관계를 나타낸다. 만약 $x \in X$, $y \in Y$ 일 때 $(x,y) \in f$ 이면 $y=f(x)$라 한다. 
+\end{itemize}
+\end{definition}
+
+이 때, 다변수함수는 정의역이 여러 집합의 곱집합인 경우 다변수함수라 한다. 예를 들어서, 다음과 같은 함수는 다변수함수이다. 
+
+\begin{example} 
+\begin{equation}
+(\mathds{R} \times \mathds{R}, \mathds{R}, \{x+y| x \in X, y \in Y \})
+\end{equation}
+\end{example}
+
+
+\paragraph{Partial Derivatives} 어떤 다변수함수 $f(x_1, x_2, ... , x_n)$ 에 대해서, $x_i$에 대한 편미분은 다음과 같이 정의된다. 
+
+\begin{definition} 
+\begin{equation}
+\frac{\partial f}{\partial x_i} = lim_{h->0} \frac{f(x_1, x_2, ..., x_i+h, ... , x_n) - f(x_1, x_2, ..., x_i, ... , x_n) }{h}
+\end{equation}
+\end{definition}
+
+예를 들어서, $f(x,y) = x^2+y$의 x에 대한 편미분은 $\frac{\partial f}{\partial x} = 2x$ 이다. 
+
+ 
 \paragraph{Gradient} 
-\paragraph{Maximization/Minimization} 
+다변수함수 $f(x_1, x_2, ... , x_n)$에 대해서 f의 Gradient는 다음과 같이 정의된다. 
+\begin{definition} 
+\begin{equation} 
+\nabla f =  \sum_i \frac{\partial f}{\partial x_i}
+\end{equation}
+\end{definition}
+
+\paragraph{Find minimum/maximum} 
+다변수함수의 최대/최소, 즉 극값을 가지는 극점(critical point)은 각 변수들에 대한 편미분값이 0이 되는 점이다. 
 \paragraph{Coordinate Change and Jacobian} 
+$\mathds{R}^n$에서 $\mathds{R}^m$으로 가는 함수 f를 생각하자. 이 때 f의 Jacobian J는 다음과 같이 정의되는 행렬이다. 
 
-\subsubsection{Functionals} 
+\begin{definition} 
+\begin{equation}
+J_{ij} = \frac{\partial f_i}{\partial x_j}, \qquad i \in [1, m], j \in [1, n]
+\end{equation}
+\end{definition}
 
+\paragraph{Chain Rule} 
 
+다변수함수 $z = f(x(t), y(t))$에 대해서 
+\begin{equation} 
+\frac{dz}{dt} = \frac{\partial z}{\partial x} \frac{dx}{dt} + \frac{\partial z}{\partial y}\frac{dy}{dt}
+\end{equation}
+
+만약 x,y가 s, t에 대한 다변수함수라면, 
+
+\begin{equation}
+\frac{\partial z}{\partial s} = \frac{\partial z}{\partial x}\frac{\partial x}{\partial s} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial s}
+\end{equation}
+
+\paragraph{Functionals} 
 
 
 \subsubsection{Vector Fields}
